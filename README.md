@@ -1,14 +1,19 @@
 # Panza UI Explorer
 
-Explore Panza UI elements, much like the React Native UI-Explorer.
+Explore Panza UI elements, much like the React Native UI-Explorer. This runs on iOS, Android, and the web.
 
 ### Install
 
 ```
 $ git clone https://github.com/bmcmahen/panza-ui-explorer.git
 $ cd panza-ui-explorer && npm install
+```
+
+### Running
+```
 $ react-native run-ios
 $ react-native run-android
+$ npm run web
 ```
 
 By default `panza` isn't actually installed. For this, you have two options.
