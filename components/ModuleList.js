@@ -18,6 +18,14 @@ const Examples = [
   {
     key: 'Image',
     module: require('./Image')
+  },
+  {
+    key: 'Input',
+    module: require('./Input')
+  },
+  {
+    key: 'InputRow',
+    module: require('./InputRow')
   }
 ]
 

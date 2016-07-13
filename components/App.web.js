@@ -3,6 +3,7 @@ import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router'
 import ExampleList from './ExampleList'
 import Module from './Module'
 import ModuleList from './ModuleList'
+import shallowCompare from 'react-addons-shallow-compare'
 
 import { View } from 'react-native'
 
@@ -64,6 +65,11 @@ ExampleListContainer.contextTypes = {
 }
 
 class AppContainer extends React.Component {
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState)
+  }
+
   render () {
     return (
       <View>

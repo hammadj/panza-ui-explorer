@@ -19,9 +19,16 @@ module.exports = {
 
   module: {
     loaders: [
-      { test: /\.js$/,
+      {
+        test: /\.js$/,
         exclude: /node_modules\/(?!(panza)\/).*/,
-        loader: 'babel'
+        loader: 'babel',
+        query: {
+          plugins: ['transform-class-properties'],
+          presets: [
+            'stage-0', 'es2015', 'react'
+          ]
+        }
       },
       { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css!postcss') }
     ]
