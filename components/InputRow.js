@@ -11,11 +11,33 @@ import {
 } from 'panza'
 import { LayoutAnimation } from 'react-native'
 
-import { View, Picker } from 'react-native'
+import { View, Picker, Platform } from 'react-native'
 
 exports.displayName = 'InputRow'
 exports.title = 'InputRow'
 exports.description = 'Various input widgets'
+
+function noop(){}
+
+function renderInputWithProps(props) {
+
+  return class Example extends React.Component {
+
+    state = {
+      value: '' || props.value
+    }
+
+    render() {
+      return (
+        <InputRow
+          value={this.state.value}
+          onChangeText={(value) => this.setState({ value })}
+          {...props}
+        />
+      )
+    }
+  }
+}
 
 class BasicGroup extends React.Component {
 
@@ -30,59 +52,36 @@ class BasicGroup extends React.Component {
   }
 
   render() {
+
+    let First = renderInputWithProps({ placeholder: 'Basic Input '})
+    let Second = renderInputWithProps({
+      label: 'Basic Input with Label',
+      placeholder: 'Your Value'
+    })
+    let Third = renderInputWithProps({
+      label: 'Basic Input with Label & Vertical',
+      vertical: true,
+      placeholder: 'Placeholder'
+    })
+
+    let Fourth = renderInputWithProps({
+      label: 'Removable',
+      removable: true,
+      placeholder: 'Type here...',
+      onSelectLabel: () => noop
+    })
+
     return (
       <View>
-      <InputGroup label='ROW INPUT' inset={16} mt={3}>
-        <InputRow
-          placeholder='Basic Input'
-          value={this.state.basic}
-          editable={this.state.editable}
-          onChangeText={(basic) => this.setState({ basic })} />
-        <InputRow
-          label='Basic Input with Label'
-          placeholder='Your value'
-          value={this.state.label}
-          editable={this.state.editable}
-          onChangeText={(label) => this.setState({ label })} />
-      <InputRow
-          label='Basic Input with Label & Vertical'
-          placeholder='Your value'
-          vertical
-          value={this.state.label2}
-          editable={this.state.editable}
-          onChangeText={(label2) => this.setState({ label2 })} />
-          <InputRow
-            removable
-            onRemove={() => {
-
-            }}
-            label='Removable'
-            placeholder='Your value'
-            value={this.state.label3}
-            editable={this.state.editable}
-            onChangeText={(label3) => this.setState({ label3 })} />
-        <InputRow
-          removable
-          condensed
-          onRemove={() => {
-
-          }}
-          label='Removable Condensed'
-          placeholder='Your value'
-          value={this.state.label4}
-          editable={this.state.editable}
-          onChangeText={(label4) => this.setState({ label4 })} />
-        <InputRow
-          icon={<SearchIcon />}
-          textAlign='left'
-          onChangeText={(label5) => this.setState({ label5 })}
-          value={this.state.label5}
-          editable={this.state.editable}
-          placeholder='Input with icon' />
+        <InputGroup label='ROW INPUT' inset={16} mt={3}>
+          <First />
+          <Second />
+          <Third />
+          <Fourth />
         </InputGroup>
-      <InputHelpText>
-        Some help text. Aute nulla ex ea amet sunt occaecat qui fugiat cupidatat fugiat in. Veniam amet elit et tempor sit ea nulla adipisicing laboris pariatur.
-      </InputHelpText>
+        <InputHelpText>
+          Some help text. Aute nulla ex ea amet sunt occaecat qui fugiat cupidatat fugiat in. Veniam amet elit et tempor sit ea nulla adipisicing laboris pariatur.
+        </InputHelpText>
       </View>
     )
   }
@@ -146,17 +145,30 @@ class InputPickerExample extends React.Component {
   }
 }
 
-export const examples = [
+class InputToggleExample extends React.Component {
+
+  state = {
+    value: true
+  }
+
+  render() {
+    return (
+      <InputToggle
+        onTintColor='positive'
+        label='Toggle'
+        value={this.state.value}
+        onValueChange={(value) => this.setState({ value })}
+      />
+    )
+  }
+
+}
+
+export let examples = [
   {
     title: 'Basic InputGroup',
     render: () => (
       <BasicGroup />
-    )
-  },
-  {
-    title: 'InputDatePicker',
-    render: () => (
-      <InputDatePickerExample />
     )
   },
   {
@@ -171,9 +183,38 @@ export const examples = [
     )
   },
   {
+    title: 'InputToggle',
+    render: () => (
+      <InputToggleExample />
+    )
+  },
+  {
     title: 'InputPickerExample',
     render: () => (
       <InputPickerExample />
     )
+  },
+  {
+    title: 'InputDatePicker',
+    render: () => (
+      <InputDatePickerExample />
+    )
   }
 ]
+
+// if (Platform.OS !== 'web') {
+//   examples = examples.concat([
+//     {
+//       title: 'InputPickerExample',
+//       render: () => (
+//         <InputPickerExample />
+//       )
+//     },
+//     {
+//       title: 'InputDatePicker',
+//       render: () => (
+//         <InputDatePickerExample />
+//       )
+//     }
+//   ])
+// }

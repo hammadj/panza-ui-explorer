@@ -26,6 +26,14 @@ const Examples = [
   {
     key: 'InputRow',
     module: require('./InputRow')
+  },
+  {
+    key: 'NavBar',
+    module: require('./NavBar')
+  },
+  {
+    key: 'Text',
+    module: require('./Text')
   }
 ]
 
