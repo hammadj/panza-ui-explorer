@@ -34,6 +34,10 @@ const Examples = [
   {
     key: 'Text',
     module: require('./Text')
+  },
+  {
+    key: 'Benchmark',
+    module: require('./Benchmarks')
   }
 ]
 

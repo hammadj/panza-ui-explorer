@@ -171,6 +171,7 @@ export let examples = [
       <BasicGroup />
     )
   },
+
   {
     title: 'AddRow',
     render: () => (
@@ -182,24 +183,24 @@ export let examples = [
       />
     )
   },
-  {
-    title: 'InputToggle',
-    render: () => (
-      <InputToggleExample />
-    )
-  },
-  {
-    title: 'InputPickerExample',
-    render: () => (
-      <InputPickerExample />
-    )
-  },
-  {
-    title: 'InputDatePicker',
-    render: () => (
-      <InputDatePickerExample />
-    )
-  }
+  // {
+  //   title: 'InputToggle',
+  //   render: () => (
+  //     <InputToggleExample />
+  //   )
+  // },
+  // {
+  //   title: 'InputPickerExample',
+  //   render: () => (
+  //     <InputPickerExample />
+  //   )
+  // },
+  // {
+  //   title: 'InputDatePicker',
+  //   render: () => (
+  //     <InputDatePickerExample />
+  //   )
+  // }
 ]
 
 // if (Platform.OS !== 'web') {
